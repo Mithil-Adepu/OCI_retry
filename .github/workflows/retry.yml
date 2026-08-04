@@ -25,7 +25,7 @@ jobs:
           region=${{ secrets.OCI_REGION }}
           key_file=~/.oci/key.pem
           EOF
-
+          chmod 600 ~/.oci/config
       - name: Attempt apply
         run: |
           JOB=$(oci resource-manager job create-apply-job --stack-id "${{ secrets.STACK_ID }}" --execution-plan-strategy AUTO_APPROVED --query 'data.id' --raw-output)
